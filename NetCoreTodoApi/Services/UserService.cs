@@ -1,55 +1,39 @@
-﻿using NetCoreTodoApi.Entities;
+﻿using AutoMapper;
+using NetCoreTodoApi.Entities;
 using NetCoreTodoApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper.QueryableExtensions;
 
 namespace NetCoreTodoApi.Services
 {
     public class UserService: IUserService
     {
         private readonly TodoContext _context;
-        public UserService(TodoContext context)
+        private readonly IMapper _mapper;
+        public UserService(TodoContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public List<UserModel> Get()
         {
-            return _context.Users.Select(x=> new UserModel() {
-                Id = x.Id,
-                Username = x.Username,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-                Password = x.Password,
-                Roles = x.Roles
-            }).ToList();
+            return _context.Users.ProjectTo<UserModel>(_mapper.ConfigurationProvider).ToList();
         }
 
         public UserModel Get(int id)
         {
-            return _context.Users.Select(x => new UserModel()
-            {
-                Id = x.Id,
-                Username = x.Username,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-                Password = x.Password,
-                Roles = x.Roles
-            }).FirstOrDefault(x=>x.Id == id);
+            var user = _context.Users.FirstOrDefault(x=>x.Id == id);
+            return _mapper.Map<UserModel>(user);
         }
         public UserModel Get(string username, string password)
         {
-            return _context.Users.Select(x => new UserModel()
-            {
-                Id = x.Id,
-                Username = x.Username,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-                Password = x.Password,
-                Roles = x.Roles
-            }).FirstOrDefault(x => x.Username == username && x.Password == password);
+            var user = _context.Users
+                            .FirstOrDefault(x => x.Username == username && x.Password == password);            
+            return _mapper.Map<UserModel>(user);
         }
         public UserModel Create(UserModel model)
         {

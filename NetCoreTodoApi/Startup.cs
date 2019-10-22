@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using NetCoreTodoApi.Entities;
 using Microsoft.EntityFrameworkCore;
 using NetCoreTodoApi.Services;
+using AutoMapper;
 
 namespace NetCoreTodoApi
 {
@@ -61,6 +62,15 @@ namespace NetCoreTodoApi
                 option.UseSqlServer(Configuration.GetConnectionString("Todo"));
             });
 
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+
             services.AddTransient<IUserService, UserService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -85,6 +95,7 @@ namespace NetCoreTodoApi
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
             });
 
             app.UseAuthentication();
