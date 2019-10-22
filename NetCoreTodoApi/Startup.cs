@@ -72,6 +72,7 @@ namespace NetCoreTodoApi
 
 
             services.AddTransient<IUserService, UserService>();
+            services.AddSingleton<IAutoMapperWrapper, AutoMapperWrapper>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

@@ -12,8 +12,8 @@ namespace NetCoreTodoApi.Services
     public class UserService: IUserService
     {
         private readonly TodoContext _context;
-        private readonly IMapper _mapper;
-        public UserService(TodoContext context, IMapper mapper)
+        private readonly IAutoMapperWrapper _mapper;
+        public UserService(TodoContext context, IAutoMapperWrapper mapper)
         {
             _context = context;
             _mapper = mapper;
