@@ -7,13 +7,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using NetCoreTodoApi.Models;
-using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using NetCoreTodoApi.Services;
 using AutoMapper;
 using AugenBookStore.Common.Wrappers;
 using NetCoreTodoApi.Repositories.Entities.Todo;
 using NetCoreTodoApi.Repositories;
+using Swashbuckle.AspNetCore.Swagger;
+using System.Collections.Generic;
 
 namespace NetCoreTodoApi
 {
@@ -56,7 +57,20 @@ namespace NetCoreTodoApi
             //Swagger API document
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info{ Title = "My API", Version = "v1" });
+
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme()
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = "header",
+                    Type = "apiKey"
+                });
+
+                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
+                {
+                    { "Bearer", new string[] { } }
+                });
             });
 
             services.AddDbContext<TodoContext>(option =>
