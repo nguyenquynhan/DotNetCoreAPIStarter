@@ -86,7 +86,8 @@ namespace NetCoreTodoApi
             services.AddSingleton(mapper);
 
 
-            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRepository<User>, UserRepository>();
+            services.AddTransient<ITodoUnitOfWork, TodoUnitOfWork>();
             services.AddTransient<IUserService, UserService>();
             services.AddSingleton<IAutoMapperWrapper, AutoMapperWrapper>();
 

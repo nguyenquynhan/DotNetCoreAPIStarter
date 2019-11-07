@@ -14,27 +14,27 @@ namespace NetCoreTodoApi.Services
 {
     public class UserService: IUserService
     {
-        private readonly IUserRepository _userRepository;
+        private readonly ITodoUnitOfWork _uowTodo;
         private readonly IAutoMapperWrapper _mapper;
-        public UserService(IUserRepository userRepository, IAutoMapperWrapper mapper)
+        public UserService(ITodoUnitOfWork uowTodo, IAutoMapperWrapper mapper)
         {
-            _userRepository = userRepository;
+            _uowTodo = uowTodo;
             _mapper = mapper;
         }
 
         public List<UserDto> Get()
         {
-            return _userRepository.GetAll().ProjectTo<UserDto>(_mapper.ConfigurationProvider).ToList();
+            return _uowTodo.UserRepository.GetAll().ProjectTo<UserDto>(_mapper.ConfigurationProvider).ToList();
         }
 
         public UserDto Get(int id)
         {
-            var user = _userRepository.Get(id);
+            var user = _uowTodo.UserRepository.Get(id);
             return _mapper.Map<UserDto>(user);
         }
         public UserDto Get(string username, string password)
         {
-            var user = _userRepository.GetAll()
+            var user = _uowTodo.UserRepository.GetAll()
                             .FirstOrDefault(x => x.Username == username && x.Password == password);            
             return _mapper.Map<UserDto>(user);
         }
@@ -48,7 +48,8 @@ namespace NetCoreTodoApi.Services
                 LastName = model.LastName,
                 Roles = model.Roles
             };
-            _userRepository.Create(user);
+            _uowTodo.UserRepository.Create(user);
+            _uowTodo.SaveChanges();
             model.Id = user.Id;
             return model;
         }
