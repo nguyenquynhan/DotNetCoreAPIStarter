@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NetCoreTodoApi.Models;
-using NetCoreTodoApi.Entities;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using NetCoreTodoApi.Repositories.Entities.Todo;
+using NetCoreTodoApi.Common.Dtos;
 
 namespace NetCoreTodoApi
 {
@@ -14,7 +15,7 @@ namespace NetCoreTodoApi
         public MappingProfile()
         {
             // Add as many of these lines as you need to map your objects
-            CreateMap<User, UserModel>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Linq;
 using AutoMapper;
 
-namespace NetCoreTodoApi
+namespace AugenBookStore.Common.Wrappers
 {
     public class AutoMapperWrapper : IAutoMapperWrapper
     {

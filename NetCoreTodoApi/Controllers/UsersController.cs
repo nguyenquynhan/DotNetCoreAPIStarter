@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using NetCoreTodoApi.Common.Dtos;
 using NetCoreTodoApi.Models;
 using NetCoreTodoApi.Services;
 
@@ -34,14 +35,14 @@ namespace NetCoreTodoApi.Controllers
         }
         // GET: api/Users
         [HttpGet]
-        public List<UserModel> Get()
+        public List<UserDto> Get()
         {
             return _userService.Get();
         }
 
         // GET: api/Users/5
         [HttpGet("{id}", Name = "Get")]
-        public ActionResult<UserModel> Get(int id)
+        public ActionResult<UserDto> Get(int id)
         {
             var user = _userService.Get(id);
             if(user == null)
@@ -57,14 +58,14 @@ namespace NetCoreTodoApi.Controllers
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
-        public ActionResult<LoginModel> Login(UserModel login)
+        public ActionResult<LoginDto> Login(UserDto login)
         {
             _logger.LogInformation("Post Login API", login);
             var admin = _userService.Get(login.Username, login.Password);
             if (admin != null)
             {
                 admin.Password = null;
-                var response = new LoginModel()
+                var response = new LoginDto()
                 {
                     User = admin
                 };
@@ -103,7 +104,7 @@ namespace NetCoreTodoApi.Controllers
 
        
         [HttpPost]
-        public ActionResult<UserModel> Post(UserModel user)
+        public ActionResult<UserDto> Post(UserDto user)
         {
             return _userService.Create(user);
         }

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NetCoreTodoApi.Models
+namespace NetCoreTodoApi.Common.Dtos
 {
-    public class LoginModel
+    public class LoginDto
     {
-        public UserModel User { get; set; }
+        public UserDto User { get; set; }
         public string Token { get; set; }
     }
 }

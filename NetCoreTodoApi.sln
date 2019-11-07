@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreTodoApi", "NetCoreTodoApi\NetCoreTodoApi.csproj", "{CD8D55E4-8F6C-4AAD-8181-935C7A024BDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreTodoApi", "NetCoreTodoApi\NetCoreTodoApi.csproj", "{CD8D55E4-8F6C-4AAD-8181-935C7A024BDE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreTodoApi.Common", "AugenBookStore.Common\NetCoreTodoApi.Common.csproj", "{05C5FA18-962A-4619-ABE0-4E5FCEA8B308}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreTodoApi.Services", "AugenBookStore.Services\NetCoreTodoApi.Services.csproj", "{787B493C-D40C-4EC3-8300-D40A8B4155C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreTodoApi.Repositories", "AugenBookStore.Repositories\NetCoreTodoApi.Repositories.csproj", "{66124980-C3D1-442E-8823-D194E652E8AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{CD8D55E4-8F6C-4AAD-8181-935C7A024BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD8D55E4-8F6C-4AAD-8181-935C7A024BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD8D55E4-8F6C-4AAD-8181-935C7A024BDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05C5FA18-962A-4619-ABE0-4E5FCEA8B308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05C5FA18-962A-4619-ABE0-4E5FCEA8B308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05C5FA18-962A-4619-ABE0-4E5FCEA8B308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05C5FA18-962A-4619-ABE0-4E5FCEA8B308}.Release|Any CPU.Build.0 = Release|Any CPU
+		{787B493C-D40C-4EC3-8300-D40A8B4155C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{787B493C-D40C-4EC3-8300-D40A8B4155C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{787B493C-D40C-4EC3-8300-D40A8B4155C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{787B493C-D40C-4EC3-8300-D40A8B4155C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66124980-C3D1-442E-8823-D194E652E8AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66124980-C3D1-442E-8823-D194E652E8AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66124980-C3D1-442E-8823-D194E652E8AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66124980-C3D1-442E-8823-D194E652E8AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

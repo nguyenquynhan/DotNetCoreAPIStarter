@@ -8,10 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using NetCoreTodoApi.Models;
 using Microsoft.OpenApi.Models;
-using NetCoreTodoApi.Entities;
 using Microsoft.EntityFrameworkCore;
 using NetCoreTodoApi.Services;
 using AutoMapper;
+using AugenBookStore.Common.Wrappers;
+using NetCoreTodoApi.Repositories.Entities.Todo;
+using NetCoreTodoApi.Repositories;
 
 namespace NetCoreTodoApi
 {
@@ -66,11 +68,11 @@ namespace NetCoreTodoApi
             {
                 mc.AddProfile(new MappingProfile());
             });
-
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
 
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();
             services.AddSingleton<IAutoMapperWrapper, AutoMapperWrapper>();
 

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
 
-namespace NetCoreTodoApi
+namespace AugenBookStore.Common.Wrappers
 {
     public interface IAutoMapperWrapper
     {

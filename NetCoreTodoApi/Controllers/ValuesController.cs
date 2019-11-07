@@ -14,9 +14,10 @@ namespace NetCoreTodoApi.Controllers
     {
         // GET api/values
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return Redirect("/");
         }
 
         // GET api/values/5

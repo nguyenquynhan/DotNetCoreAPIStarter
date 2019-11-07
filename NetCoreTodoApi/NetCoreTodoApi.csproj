@@ -21,6 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AugenBookStore.Common\NetCoreTodoApi.Common.csproj" />
+    <ProjectReference Include="..\AugenBookStore.Repositories\NetCoreTodoApi.Repositories.csproj" />
+    <ProjectReference Include="..\AugenBookStore.Services\NetCoreTodoApi.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="nlog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
