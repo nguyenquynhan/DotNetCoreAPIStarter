@@ -15,6 +15,7 @@ using NetCoreTodoApi.Repositories.Entities.Todo;
 using NetCoreTodoApi.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
+using NetCoreTodoApi.Common.Utilities;
 
 namespace NetCoreTodoApi
 {
@@ -94,7 +95,7 @@ namespace NetCoreTodoApi
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-
+            services.AddSingleton<IHashUtility, HashUtility>();
             services.AddTransient<IRepository<User>, UserRepository>();
             services.AddTransient<ITodoUnitOfWork, TodoUnitOfWork>();
             services.AddTransient<IUserService, UserService>();

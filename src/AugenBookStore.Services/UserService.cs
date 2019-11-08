@@ -9,6 +9,9 @@ using AugenBookStore.Common;
 using NetCoreTodoApi.Repositories.Entities.Todo;
 using NetCoreTodoApi.Common.Dtos;
 using AugenBookStore.Common.Wrappers;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using NetCoreTodoApi.Common.Utilities;
 
 namespace NetCoreTodoApi.Services
 {
@@ -16,10 +19,14 @@ namespace NetCoreTodoApi.Services
     {
         private readonly ITodoUnitOfWork _uowTodo;
         private readonly IAutoMapperWrapper _mapper;
-        public UserService(ITodoUnitOfWork uowTodo, IAutoMapperWrapper mapper)
+        private readonly IHashUtility _hashUtility;
+        public UserService(ITodoUnitOfWork uowTodo
+                            , IAutoMapperWrapper mapper
+                            , IHashUtility hashUtility)
         {
             _uowTodo = uowTodo;
             _mapper = mapper;
+            _hashUtility = hashUtility;
         }
 
         public List<UserDto> Get()
@@ -34,8 +41,9 @@ namespace NetCoreTodoApi.Services
         }
         public UserDto Get(string username, string password)
         {
+            string hashedPassword = _hashUtility.Encrypt(password);
             var user = _uowTodo.UserRepository.GetAll()
-                            .FirstOrDefault(x => x.Username == username && x.Password == password);            
+                            .FirstOrDefault(x => x.Username == username && x.Password == hashedPassword);            
             return _mapper.Map<UserDto>(user);
         }
         public UserDto Create(UserDto model)
@@ -43,7 +51,7 @@ namespace NetCoreTodoApi.Services
             var user = new User()
             {
                 Username = model.Username,
-                Password = model.Password,
+                Password = _hashUtility.Encrypt(model.Password),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Roles = model.Roles
