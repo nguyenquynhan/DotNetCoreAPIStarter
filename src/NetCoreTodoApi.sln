@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreTodoApi.Services", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreTodoApi.Repositories", "AugenBookStore.Repositories\NetCoreTodoApi.Repositories.csproj", "{66124980-C3D1-442E-8823-D194E652E8AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{CC1F0ABF-C6E7-41D3-A5D1-1DCE94B38F78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{66124980-C3D1-442E-8823-D194E652E8AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66124980-C3D1-442E-8823-D194E652E8AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66124980-C3D1-442E-8823-D194E652E8AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC1F0ABF-C6E7-41D3-A5D1-1DCE94B38F78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC1F0ABF-C6E7-41D3-A5D1-1DCE94B38F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC1F0ABF-C6E7-41D3-A5D1-1DCE94B38F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC1F0ABF-C6E7-41D3-A5D1-1DCE94B38F78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -37,14 +37,24 @@ namespace NetCoreTodoApi.Services
         public UserDto Get(int id)
         {
             var user = _uowTodo.UserRepository.Get(id);
-            return _mapper.Map<UserDto>(user);
+            if(user != null)
+            {
+                return _mapper.Map<UserDto>(user);
+            }
+
+            return null;
         }
         public UserDto Get(string username, string password)
         {
             string hashedPassword = _hashUtility.Encrypt(password);
             var user = _uowTodo.UserRepository.GetAll()
-                            .FirstOrDefault(x => x.Username == username && x.Password == hashedPassword);            
-            return _mapper.Map<UserDto>(user);
+                            .FirstOrDefault(x => x.Username == username && x.Password == hashedPassword);
+            if (user != null)
+            {
+                return _mapper.Map<UserDto>(user);
+            }
+
+            return null;
         }
         public UserDto Create(UserDto model)
         {
