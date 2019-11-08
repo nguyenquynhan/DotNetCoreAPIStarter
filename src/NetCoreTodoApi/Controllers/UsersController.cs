@@ -32,7 +32,9 @@ namespace NetCoreTodoApi.Controllers
             _logger = logger;
             _appSettings = appSettings.Value;
             _userService = userService;
+            GenerateDefaultData();
         }
+
         // GET: api/Users
         [HttpGet]
         public List<UserDto> Get()
@@ -58,14 +60,14 @@ namespace NetCoreTodoApi.Controllers
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
-        public ActionResult<LoginDto> Login(UserDto login)
+        public ActionResult<ResponseLoginDto> Login(LoginDto login)
         {
             _logger.LogInformation("Post Login API", login);
             var admin = _userService.Get(login.Username, login.Password);
             if (admin != null)
             {
                 admin.Password = null;
-                var response = new LoginDto()
+                var response = new ResponseLoginDto()
                 {
                     User = admin
                 };
@@ -104,6 +106,7 @@ namespace NetCoreTodoApi.Controllers
 
        
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult<UserDto> Post(UserDto user)
         {
             return _userService.Create(user);
@@ -113,6 +116,39 @@ namespace NetCoreTodoApi.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            throw new NotImplementedException();
+        }
+
+
+
+        private void GenerateDefaultData()
+        {
+            bool isNotExistAdmin = _userService.Get("Admin", "123") == null;
+            if (isNotExistAdmin)
+            {
+                UserDto admin = new UserDto()
+                {
+                    Username = "Admin",
+                    FirstName = "Supper",
+                    LastName = "Admin",
+                    Password = "123",
+                    Roles = "Admin"
+                };
+                _userService.Create(admin);
+            }
+
+            bool isNotExistGuess = _userService.Get("Guess", "123") == null;
+            if (isNotExistGuess)
+            {
+                UserDto guess = new UserDto()
+                {
+                    Username = "Guess",
+                    FirstName = "Ms",
+                    LastName = "Guess",
+                    Password = "123"
+                };
+                _userService.Create(guess);
+            }
         }
     }
 }

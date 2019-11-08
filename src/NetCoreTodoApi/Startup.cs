@@ -61,7 +61,7 @@ namespace NetCoreTodoApi
 
                 c.AddSecurityDefinition("Bearer", new ApiKeyScheme()
                 {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
                     Name = "Authorization",
                     In = "header",
                     Type = "apiKey"
@@ -75,7 +75,16 @@ namespace NetCoreTodoApi
 
             services.AddDbContext<TodoContext>(option =>
             {
-                option.UseSqlServer(Configuration.GetConnectionString("Todo"));
+                //Default is UseInMemoryDatabase, so we can easier to test any PC.
+                if (appSettings.UseInMemoryDatabase)
+                {
+                    option.UseInMemoryDatabase("Todo");
+                }
+                else
+                {
+                    option.UseSqlServer(Configuration.GetConnectionString("Todo"));
+                }
+                
             });
 
             var mappingConfig = new MapperConfiguration(mc =>

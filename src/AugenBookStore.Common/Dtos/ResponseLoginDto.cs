@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace NetCoreTodoApi.Common.Dtos
 {
-    public class LoginDto
+    public class ResponseLoginDto
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public UserDto User { get; set; }
+        public string Token { get; set; }
     }
 }

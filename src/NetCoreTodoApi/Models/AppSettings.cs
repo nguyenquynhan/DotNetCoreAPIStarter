@@ -8,5 +8,6 @@ namespace NetCoreTodoApi.Models
     public class AppSettings
     {
         public string Secret { get; set; }
+        public bool UseInMemoryDatabase { get; set; }
     }
 }
